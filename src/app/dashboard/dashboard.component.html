@@ -1,0 +1,61 @@
+<div class="main-content">
+  <div class="container-fluid">
+      <div class="row">
+          <div class="col-md-12">
+              <div class="card">
+                  <div class="card-header card-header-success card-header-icon">
+                      <div class="card-icon">
+                          <!-- <i class="material-icons">assignment</i> -->
+                          <i class="fas fa-users fa-2x"></i>
+                      </div>
+                      <h4 class="card-title"> Leads </h4>
+                      <h4 class="card-title text-right" style="font-weight: bolder">Total Leads: {{ leads.length }}</h4>
+                      <!-- <h4 class="card-title text-right" style="font-weight: bolder">Total Leads: {{totalRecords}}</h4> -->
+                  </div>
+                  <span>
+                    <input class="card-title text-left" type="button" (click)="openAddLeadModal()" class="btn btn-rose" name="openModal" value="Add Lead" />
+                  </span>
+                  <div class="row search-results"
+                  infiniteScroll
+                  [infiniteScrollDistance]="1"
+                  [infiniteScrollThrottle]="50"
+                  (scrolled)="onScroll()">
+                      <div class="card-body">
+                          <div class="table-responsive">
+                              <table class="table" id="leads-table">
+                                  <thead>
+                                  <th>Name</th>
+                                  <th>Email</th>
+                                  <th>Mobile Num</th>
+                                  <th>Location Type</th>
+                                  <th>Location String</th>
+                                  <th>Action</th>
+                                  </thead>
+                                  <tbody *ngIf="leads && leads.length > 0">
+                                  <tr *ngFor="let lead of leads; let i = index;">
+                                      <td>{{lead.first_name + ' ' + lead.last_name}}</td>
+                                      <td>{{lead.email}}</td>
+                                      <td>{{lead.mobile}}</td>
+                                      <td>{{lead.location_type}}</td>
+                                      <td>{{lead.location_string}}</td>
+                                      <td class="td-actions text-center">
+                                          <button mat-raised-button type="button" class="btn btn-success btn-round" style="margin: 0px 4px;" (click)="openMarkCommunicationModal(lead)">
+                                              <i class="material-icons">edit</i>
+                                          </button>
+
+                                          <button mat-raised-button type="button" class="btn btn-danger btn-round" style="margin: 0px 4px;" (click)="openDeleteLeadModal(lead)">
+                                              <i class="material-icons">delete</i>
+                                          </button>
+
+                                      </td>
+                                  </tr>
+                                  </tbody>
+                              </table>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
